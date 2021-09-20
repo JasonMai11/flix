@@ -14,7 +14,6 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     
                 //Syntax: Creation of an Array of Dictionaries
     var movies =  [[String:Any]]()
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,15 +80,32 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     
-
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        
+        print("Loading up the details screen")
+        
+        // TODO: Find the selected Movie
+        
+        // the cell = to the sender that was tapped on
+        let cell = sender as! UITableViewCell
+        // find the index path for the cell
+        let indexPath = tableView.indexPath(for: cell)!
+        // access the array
+        let movie = movies[indexPath.row]
+        
+        // TODO: Pass the selected Movie to the details view controller
+        
+        let detailsViewController = segue.destination as! MovieDetailsViewController
+        detailsViewController.movie = movie
+        
+        // to prevent the highlight after pressing and backing out
+        tableView.deselectRow(at: indexPath, animated: true)
     }
-    */
+    
 
 }
